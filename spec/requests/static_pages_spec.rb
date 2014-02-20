@@ -1,53 +1,34 @@
 require 'spec_helper'
 
+
 describe "Static pages" do
+  subject {page}
 
   describe "Home page" do
-
-    it "should have the content 'Sample App'" do
-      visit '/static_pages/home'
-      page.should have_content('Sample App')
-    end
-    it "should have the title 'Home'" do
-      visit '/static_pages/home'
-      page.should have_title("Ruby on Rails Tutorial Sample App")
-
-    end
-
-    it "should have the title 'Home'" do
-      visit '/static_pages/home'
-      page.should_not have_selector('title', :text => "| Home")
-    end
-
-
+    before { visit  root_path}
+    it {page.should have_content('Sample App')}
+    it {have_selector('title', :text => "Ruby on Rails Tutorial Sample App")}
+    it {have_selector('title', :text => "| Home")}
   end
 
   describe "Help" do
-
-    it "should have the content 'Help'" do
-      visit '/static_pages/help'
-      page.should have_content('help')
-    end
-
-    it "should have the title 'Help'" do
-      visit '/static_pages/help'
-      page.should have_selector('title',  :text => "| Help")
-    end
-
+    before {visit help_path}
+    it {have_content('help')}
+    it {have_selector('title',  :text => "| Help")}
   end
 
   describe "About" do
-
-    it "should have the content 'About'" do
-      visit '/static_pages/about'
-      page.should have_content('About')
-    end
+    before {visit about_path}  
+    it {have_content('About')}
+    it {have_selector('title',  :text => "| About")}
   end
 
-    it "should have the title 'About'" do
-      visit '/static_pages/about'
-      page.should have_selector('title',  :text => "| About")
-    end
+  describe "Contact page" do
+    before {visit contact_path}
+    it {have_selector('h1',  :text => 'Contact')}
+    it {have_selector('title',  :text => "Ruby on Rails Tutorial Sample App | Contact")}
+  end
+
 
 
 end
