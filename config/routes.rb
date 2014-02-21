@@ -1,6 +1,5 @@
 SampleApp::Application.routes.draw do
-  get "users/new"
-
+  
 #  match '/',        to: 'static_pages#home',    via: 'get'
   root to: 'static_pages#home'
   match '/help',    to: 'static_pages#help',    via: 'get'
